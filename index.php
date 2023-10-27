@@ -40,11 +40,19 @@
 echo ($row['lg_customer_id'] . " " . $row['lg_email'] . " " . $row['lg_password'] . " " . $row['lg_incoming_msg'] .  PHP_EOL);
     $lg_email_data = $row['lg_email'];
     }
-       if ($lg_email_data == $lg_email){
-           echo "Email Already Exist";
-    }
     sqlsrv_free_stmt($getResults);
-   
+
+if ($getResults->num_rows > 0) {
+    
+   echo "Num rows Already Exists";
+    
+} else {    
+    
+    echo "New data Inserted";
+
+}
+
+
 
 // if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp)) 
 // {
