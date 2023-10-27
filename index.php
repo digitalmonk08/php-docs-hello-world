@@ -74,8 +74,10 @@ if ($lg_email_data != $lg_email) {
     echo $msg;
     
 } else {    
-    echo "Login Already Exists";
-    }
+     $msg = '{"status" : "Login Already Exists"
+          }';
+    echo $msg;
+        }
  }
 
 //**********SIGNUP API************
@@ -113,9 +115,11 @@ if ($sg_email_data != $sg_email) {
           }';
     echo $msg;
     
-} else {    
-    echo "Signup Already Exists";
-    }
+} else {   
+     $msg = '{"status" : "Signup Already Exists"
+          }';
+    echo $msg;
+        }
 }
 
 
@@ -144,8 +148,10 @@ if ($profile_email_data != $email) {
     echo $msg;
     
 } else {    
-    echo "History Already Exists";
-    }
+     $msg = '{"status" : "History Already Exists"
+          }';
+    echo $msg;
+        }
 }        
 
 // if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp)) 
