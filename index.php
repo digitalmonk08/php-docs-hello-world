@@ -49,13 +49,11 @@
     echo ($row['lg_customer_id'] . " " . $row['lg_email'] . PHP_EOL);
     $lg_email_data = $row['lg_email'];
          $lg_customer_id = $row['lg_customer_id'];
-        echo "in loop ur id";
-     echo $lg_customer_id;
         
     }
     sqlsrv_free_stmt($lg_Results);
-echo "ur id";
-     echo $lg_customer_id;
+// echo "ur id";
+//      echo $lg_customer_id;
      
 if ($lg_email_data != $lg_email) {
     
@@ -65,12 +63,10 @@ if ($lg_email_data != $lg_email) {
     $login_Result= sqlsrv_query($conn, $login_insert);
     sqlsrv_free_stmt($login_Result);
 
-    echo "customer_id";
-    echo $lg_customer_id;
-  // $msg = '{"status" : "Login Successfully",
-  //         "Customer_id":"'.$lg_customer_id.'"
-  //         }';
-  //   echo $msg;
+  $msg = '{"status" : "Login Successfully",
+          "Customer_id":"'.$lg_customer_id.'"
+          }';
+    echo $msg;
     
 } else {    
     echo "Login Already Exists";
