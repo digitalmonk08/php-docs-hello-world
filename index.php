@@ -59,8 +59,8 @@ if ($lg_email_data != $lg_email) {
     $login_Result= sqlsrv_query($conn, $login_insert);
     sqlsrv_free_stmt($login_Result);
 
-    echo "Login Successfully"; 
-    echo "Customer_Id\n";
+    echo "Login Successfully.<br>"; 
+    echo "Customer_Id:\n";
     echo $lg_customer_id;
     
 } else {    
@@ -78,6 +78,7 @@ if ($lg_email_data != $lg_email) {
         echo (sqlsrv_errors());
     while ($row = sqlsrv_fetch_array($sg_Results, SQLSRV_FETCH_ASSOC)) {
     $sg_email_data = $row['sg_email'];
+        $sg_customer_id = $row['sg_customer_id'];
     }
     sqlsrv_free_stmt($sg_Results);
 
@@ -88,7 +89,10 @@ if ($sg_email_data != $sg_email) {
 
     $signup_result= sqlsrv_query($conn, $signup_insert);
     sqlsrv_free_stmt($signup_result);
- echo "Signup Successfully";   
+ echo "Signup Successfully.<br>";
+    echo "Customer_Id:\n";
+    echo $sg_customer_id;
+    
 } else {    
     echo "Signup Already Exists";
     }
