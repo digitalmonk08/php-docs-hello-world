@@ -39,25 +39,34 @@
     $profile_customer_id = "";
 
 //*********LOGIN API************
-
+ if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp)) 
+ {
     $lg_email_data= "SELECT * FROM login WHERE lg_email='$lg_email'";
     $lg_Results= sqlsrv_query($conn, $lg_email_data);
     if ($lg_Results == FALSE)
         echo (sqlsrv_errors());
     while ($row = sqlsrv_fetch_array($lg_Results, SQLSRV_FETCH_ASSOC)) {
     $lg_email_data = $row['lg_email']; 
-         $lg_customer_id = $row['lg_customer_id']; 
     }
     sqlsrv_free_stmt($lg_Results);
      
 if ($lg_email_data != $lg_email) {
-    
+
       $login_insert = "INSERT INTO login (lg_email, lg_password, lg_incoming_msg, lg_AI_msg, lg_timestamp)
    VALUES ('$lg_email', '$lg_password', '$lg_incoming_msg', '$lg_AI_msg', '$lg_timestamp')";
 
     $login_Result= sqlsrv_query($conn, $login_insert);
     sqlsrv_free_stmt($login_Result);
 
+    $lg_customer_data= "SELECT * FROM login WHERE lg_email='$lg_email'";
+    $lg_customer_Results= sqlsrv_query($conn, $lg_customer_data);
+    if ($lg_customer_Results == FALSE)
+        echo (sqlsrv_errors());
+    while ($row01 = sqlsrv_fetch_array($lg_customer_Results, SQLSRV_FETCH_ASSOC)) {
+         $lg_customer_id = $row01['lg_customer_id']; 
+    }
+    sqlsrv_free_stmt($lg_customer_Results);
+    
     echo "id";
     echo $lg_customer_id;
     
@@ -69,7 +78,7 @@ if ($lg_email_data != $lg_email) {
 } else {    
     echo "Login Already Exists";
     }
-
+ }
 
 //**********SIGNUP API************
 
