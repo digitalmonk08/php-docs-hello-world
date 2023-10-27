@@ -46,14 +46,9 @@
     if ($lg_Results == FALSE)
         echo (sqlsrv_errors());
     while ($row = sqlsrv_fetch_array($lg_Results, SQLSRV_FETCH_ASSOC)) {
-    echo ($row['lg_customer_id'] . " " . $row['lg_email'] . PHP_EOL);
-    $lg_email_data = $row['lg_email'];
-         $lg_customer_id = $row['lg_customer_id'];
-        
+    $lg_email_data = $row['lg_email'];        
     }
     sqlsrv_free_stmt($lg_Results);
-// echo "ur id";
-//      echo $lg_customer_id;
      
 if ($lg_email_data != $lg_email) {
     
@@ -63,6 +58,10 @@ if ($lg_email_data != $lg_email) {
     $login_Result= sqlsrv_query($conn, $login_insert);
     sqlsrv_free_stmt($login_Result);
 
+       while ($row = sqlsrv_fetch_array($lg_Results, SQLSRV_FETCH_ASSOC)) {
+    $lg_customer_id = $row['lg_customer_id'];        
+    }
+        sqlsrv_free_stmt($lg_Results);
   $msg = '{"status" : "Login Successfully",
           "Customer_id":"'.$lg_customer_id.'"
           }';
