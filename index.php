@@ -38,7 +38,7 @@ if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp))
 
     $login_Result= sqlsrv_query($conn, $login_insert);
     sqlsrv_free_stmt($login_Result);
-    echo "login Successfully";
+    echo "Login Successfully";
 }
 
 if (isset($sg_email, $sg_password, $sg_incoming_msg, $sg_AI_msg, $sg_timestamp)) 
