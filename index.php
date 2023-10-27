@@ -24,6 +24,7 @@
     $sg_timestamp = $_GET["sg_timestamp"];
 
 //**********HISTORY PARAMETER*************
+    $customer_id = $_GET["customer_id"];
     $email = $_GET["email"];
     $incoming_msg = $_GET["incoming_msg"];
     $AI_msg = $_GET["AI_msg"];
@@ -119,7 +120,7 @@ if ($sg_email_data != $sg_email) {
 
 
 //**************HISTORY API************
- if (isset($email, $incoming_msg, $AI_msg, $category, $mytimestamp)) 
+ if (isset($customer_id, $email, $incoming_msg, $AI_msg, $category, $mytimestamp)) 
  {
     $pf_email_data= "SELECT * FROM ID_1001 WHERE email='$email'";
     $pf_Results= sqlsrv_query($conn, $pf_email_data);
@@ -132,12 +133,15 @@ if ($sg_email_data != $sg_email) {
 
 if ($profile_email_data != $email) {
     
-  $history_insert = "INSERT INTO ID_1001 (email, incoming_msg, AI_msg, category, mytimestamp)
-   VALUES ('$email', '$incoming_msg', '$AI_msg', '$category', '$mytimestamp')";
+  $history_insert = "INSERT INTO ID_1001 (customer_id, email, incoming_msg, AI_msg, category, mytimestamp)
+   VALUES ($customer_id, '$email', '$incoming_msg', '$AI_msg', '$category', '$mytimestamp')";
 
     $history_result= sqlsrv_query($conn, $history_insert);
     sqlsrv_free_stmt($history_result);
- echo "History Inserted";
+    $msg = '{"status" : "History Inserted"
+          }';
+    
+    echo $msg;
     
 } else {    
     echo "History Already Exists";
