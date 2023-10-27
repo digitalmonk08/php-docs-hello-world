@@ -61,7 +61,7 @@ if ($lg_email_data != $lg_email) {
        while ($row = sqlsrv_fetch_array($lg_Results, SQLSRV_FETCH_ASSOC)) {
     $lg_customer_id = $row['lg_customer_id'];        
     }
-        sqlsrv_free_stmt($lg_Results);
+    
   $msg = '{"status" : "Login Successfully",
           "Customer_id":"'.$lg_customer_id.'"
           }';
