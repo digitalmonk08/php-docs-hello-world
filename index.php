@@ -30,6 +30,7 @@
     $category= $_GET["category"];
     $mytimestamp = $_GET["mytimestamp"];
 
+    $lg_email_data = "";
 
     $tsql= "SELECT * FROM login WHERE lg_email='$lg_email'";
     $getResults= sqlsrv_query($conn, $tsql);
@@ -37,8 +38,9 @@
         echo (sqlsrv_errors());
     while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
 echo ($row['lg_customer_id'] . " " . $row['lg_email'] . " " . $row['lg_password'] . " " . $row['lg_incoming_msg'] .  PHP_EOL);
+    $lg_email_data = $row['lg_email'];
     }
-       if ($row['lg_email'] == $lg_email){
+       if ($lg_email_data == $lg_email){
            echo "Email Already Exist";
     }
     sqlsrv_free_stmt($getResults);
