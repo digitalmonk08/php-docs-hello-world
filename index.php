@@ -42,9 +42,9 @@ echo ($row['lg_customer_id'] . " " . $row['lg_email'] . " " . $row['lg_password'
     }
     sqlsrv_free_stmt($getResults);
 
-if ($getResults->num_rows > 0) {
+if ($lg_email_data == $lg_email) {
     
-   echo "Num rows Already Exists";
+   echo "Email Already Exists";
     
 } else {    
     
