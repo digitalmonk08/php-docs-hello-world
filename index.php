@@ -48,9 +48,14 @@
     while ($row = sqlsrv_fetch_array($lg_Results, SQLSRV_FETCH_ASSOC)) {
     $lg_email_data = $row['lg_email'];
          $lg_customer_id = $row['lg_customer_id'];
+        echo "in loop ur id";
+     echo $lg_customer_id;
+        
     }
     sqlsrv_free_stmt($lg_Results);
-
+echo "ur id";
+     echo $lg_customer_id;
+     
 if ($lg_email_data != $lg_email) {
     
       $login_insert = "INSERT INTO login (lg_email, lg_password, lg_incoming_msg, lg_AI_msg, lg_timestamp)
