@@ -44,8 +44,12 @@ echo ($row['lg_customer_id'] . " " . $row['lg_email'] . " " . $row['lg_password'
 
 if ($lg_email_data != $lg_email) {
     
-   echo "Email Inserted";
-    
+      $login_insert = "INSERT INTO login (lg_email, lg_password, lg_incoming_msg, lg_AI_msg, lg_timestamp)
+   VALUES ('$lg_email', '$lg_password', '$lg_incoming_msg', '$lg_AI_msg', '$lg_timestamp')";
+
+    $login_Result= sqlsrv_query($conn, $login_insert);
+    sqlsrv_free_stmt($login_Result);
+    echo "Login Successfully";    
 } else {    
     
     echo "Email Already Exists";
