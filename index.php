@@ -33,25 +33,29 @@
 //Email Chek In login
 if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp)) 
 {
+    
 $email_chek = "SELECT * FROM login WHERE `lg_email` = '$lg_email'";
 $getResults= sqlsrv_query($conn, $email_chek);
 
-if (mysql_num_rows($getResults) > 0) {
+    if ($getResults == FALSE)
+    {
         
-    echo "Already Exist";
-}
-else {
-
-    $login_insert = "INSERT INTO login (lg_email, lg_password, lg_incoming_msg, lg_AI_msg, lg_timestamp)
-   VALUES ('$lg_email', '$lg_password', '$lg_incoming_msg', '$lg_AI_msg', '$lg_timestamp')";
-
-    $login_Result= sqlsrv_query($conn, $login_insert);
-    sqlsrv_free_stmt($login_Result);
-    echo "login Successfully";
+        while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+    }
+        if ($row['lg_email'] != $lg_email)
+        {
+            $login_insert = "INSERT INTO login (lg_email, lg_password, lg_incoming_msg, lg_AI_msg, lg_timestamp)
+           VALUES ('$lg_email', '$lg_password', '$lg_incoming_msg', '$lg_AI_msg', '$lg_timestamp')";
+        
+            $login_Result= sqlsrv_query($conn, $login_insert);
+            sqlsrv_free_stmt($login_Result);
+            echo "login Successfully";
+    }
+        else{
+           echo "Already Exist";
+        }
     }
 }
-
-
 // if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp)) 
 // {
 //     $login_insert = "INSERT INTO login (lg_email, lg_password, lg_incoming_msg, lg_AI_msg, lg_timestamp)
