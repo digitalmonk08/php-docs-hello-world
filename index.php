@@ -33,7 +33,7 @@
 //Email Chek In login
 if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp)) 
 {
-$email_chek = "SELECT * FROM login WHERE `email` = '$lg_email'";
+$email_chek = "SELECT * FROM login WHERE `lg_email` = '$lg_email'";
 $getResults= sqlsrv_query($conn, $email_chek);
 
 if ($getResults->num_rows > 0) {
