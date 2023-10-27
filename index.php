@@ -62,10 +62,10 @@ if ($lg_email_data != $lg_email) {
     $lg_customerIDResults= sqlsrv_query($conn, $lg_customerID_data);
     if ($lg_customerIDResults == FALSE)
         echo (sqlsrv_errors());
-    while ($row = sqlsrv_fetch_array($lg_customerIDResults, SQLSRV_FETCH_ASSOC)) {
-    $lg_customer_id = $row['lg_customer_id'];
+    while ($row2 = sqlsrv_fetch_array($lg_customerIDResults, SQLSRV_FETCH_ASSOC)) {
+    $lg_customer_id = $row2['lg_customer_id'];
     }
-    sqlsrv_free_stmt($lg_Results);
+    sqlsrv_free_stmt($lg_customerIDResults);
     echo "Login Successfully"; 
     echo "Customer_Id\n";
     echo $lg_customer_id;
