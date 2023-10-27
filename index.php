@@ -10,6 +10,7 @@
     echo "name";
     echo ($value);
     echo "changes hoye hun";
+    echo "yes mam ho gye";
 //     $conn = sqlsrv_connect($serverName, $connectionOptions);
 //     $tsql= "SELECT * FROM kareena";
 //     $getResults= sqlsrv_query($conn, $tsql);
