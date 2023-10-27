@@ -34,6 +34,7 @@
     $sg_email_data = "";
     $profile_email_data = "";
 
+//*********LOGIN API************
  if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp)) 
  {
     $lg_email_data= "SELECT * FROM login WHERE lg_email='$lg_email'";
@@ -54,10 +55,11 @@ if ($lg_email_data != $lg_email) {
     sqlsrv_free_stmt($login_Result);
     echo "Login Successfully";    
 } else {    
-    echo "Login Email Already Exists";
+    echo "Login Already Exists";
     }
 }
 
+//**********SIGNUP API************
 
  if (isset($sg_email, $sg_password, $sg_incoming_msg, $sg_AI_msg, $sg_timestamp)) 
  {
@@ -79,11 +81,36 @@ if ($sg_email_data != $sg_email) {
     sqlsrv_free_stmt($signup_result);
  echo "Signup Successfully";   
 } else {    
-    echo "Signup Email Already Exists";
+    echo "Signup Already Exists";
     }
 }
 
-          
+
+//**************HISTORY API************
+ if (isset($email, $incoming_msg, $AI_msg, $category, $mytimestamp)) 
+ {
+    $pf_email_data= "SELECT * FROM ID_1001 WHERE email='$email'";
+    $pf_Results= sqlsrv_query($conn, $pf_email_data);
+    if ($pf_Results == FALSE)
+        echo (sqlsrv_errors());
+    while ($row = sqlsrv_fetch_array($pf_Results, SQLSRV_FETCH_ASSOC)) {
+    $profile_email_data = $row['email'];
+    }
+    sqlsrv_free_stmt($pf_Results);
+
+if ($profile_email_data != $email) {
+    
+  $history_insert = "INSERT INTO ID_1001 (email, incoming_msg, AI_msg, category, mytimestamp)
+   VALUES ('$email', '$incoming_msg', '$AI_msg', '$category', '$mytimestamp')";
+
+    $history_result= sqlsrv_query($conn, $history_insert);
+    sqlsrv_free_stmt($history_result);
+ echo "History Inserted";
+    
+} else {    
+    echo "History Already Exists";
+    }
+}        
 
 // if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp)) 
 // {
