@@ -23,6 +23,13 @@
     $sg_AI_msg = $_GET["sg_AI_msg"];
     $sg_timestamp = $_GET["sg_timestamp"];
 
+//**********HISTORY PARAMETER*************
+    $email = $_GET["email"];
+    $incoming_msg = $_GET["incoming_msg"];
+    $AI_msg = $_GET["AI_msg"];
+    $category= $_GET["category"];
+    $mytimestamp = $_GET["mytimestamp"];
+
 
 if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp)) 
 {
@@ -31,7 +38,7 @@ if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp))
 
     $login_Result= sqlsrv_query($conn, $login_insert);
     sqlsrv_free_stmt($login_Result);
-    echo "login insert done";
+    echo "login Successfully";
 }
 
 if (isset($sg_email, $sg_password, $sg_incoming_msg, $sg_AI_msg, $sg_timestamp)) 
@@ -42,6 +49,18 @@ if (isset($sg_email, $sg_password, $sg_incoming_msg, $sg_AI_msg, $sg_timestamp))
 
     $signup_result= sqlsrv_query($conn, $signup_insert);
     sqlsrv_free_stmt($signup_result);
- echo "signup Insert Done";
+ echo "signup Successfully";
 }
+
+if (isset($email, $incoming_msg, $AI_msg, $category, $mytimestamp)) 
+{
+    
+  $history_insert = "INSERT INTO ID_1001 (email, incoming_msg, AI_msg, category, mytimestamp)
+   VALUES ('$email', '$incoming_msg', '$AI_msg', '$category', '$mytimestamp')";
+
+    $history_result= sqlsrv_query($conn, $history_insert);
+    sqlsrv_free_stmt($history_result);
+ echo "History Successfully";
+}
+    
 ?>
