@@ -42,13 +42,13 @@ echo ($row['lg_customer_id'] . " " . $row['lg_email'] . " " . $row['lg_password'
     }
     sqlsrv_free_stmt($getResults);
 
-if ($lg_email_data == $lg_email) {
+if ($lg_email_data != $lg_email) {
     
-   echo "Email Already Exists";
+   echo "Email Inserted";
     
 } else {    
     
-    echo "New data Inserted";
+    echo "Email Already Exists";
 
 }
 
