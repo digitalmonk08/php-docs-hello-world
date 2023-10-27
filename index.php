@@ -39,8 +39,7 @@
     $profile_customer_id = "";
 
 //*********LOGIN API************
- if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp)) 
- {
+
     $lg_email_data= "SELECT * FROM login WHERE lg_email='$lg_email'";
     $lg_Results= sqlsrv_query($conn, $lg_email_data);
     if ($lg_Results == FALSE)
@@ -70,7 +69,7 @@ if ($lg_email_data != $lg_email) {
 } else {    
     echo "Login Already Exists";
     }
-}
+
 
 //**********SIGNUP API************
 
