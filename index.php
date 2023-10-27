@@ -67,13 +67,10 @@ if ($lg_email_data != $lg_email) {
     }
     sqlsrv_free_stmt($lg_customer_Results);
     
-    echo "id";
-    echo $lg_customer_id;
-    
-  // $msg = '{"status" : "Login Successfully",
-  //         "Customer_id":"'.$lg_customer_id.'"
-  //         }';
-  //   echo $msg;
+  $msg = '{"status" : "Login Successfully",
+          "Customer_id":"'.$lg_customer_id.'"
+          }';
+    echo $msg;
     
 } else {    
     echo "Login Already Exists";
