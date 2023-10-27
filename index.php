@@ -36,11 +36,8 @@ if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp))
     
 $email_chek = "SELECT * FROM login WHERE `lg_email` = '$lg_email'";
 $getResults= sqlsrv_query($conn, $email_chek);
-
-    if ($getResults == FALSE)
-    {
-        
-        while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+  
+    while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     }
         if ($row['lg_email'] != $lg_email)
         {
@@ -54,7 +51,6 @@ $getResults= sqlsrv_query($conn, $email_chek);
         else{
            echo "Already Exist";
         }
-    }
 }
 // if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp)) 
 // {
