@@ -46,7 +46,8 @@
     if ($lg_Results == FALSE)
         echo (sqlsrv_errors());
     while ($row = sqlsrv_fetch_array($lg_Results, SQLSRV_FETCH_ASSOC)) {
-    $lg_email_data = $row['lg_email'];        
+    $lg_email_data = $row['lg_email']; 
+         $lg_customer_id = $row['lg_customer_id']; 
     }
     sqlsrv_free_stmt($lg_Results);
      
@@ -58,14 +59,13 @@ if ($lg_email_data != $lg_email) {
     $login_Result= sqlsrv_query($conn, $login_insert);
     sqlsrv_free_stmt($login_Result);
 
-       while ($row = sqlsrv_fetch_array($lg_Results, SQLSRV_FETCH_ASSOC)) {
-    $lg_customer_id = $row['lg_customer_id'];        
-    }
+    echo "id";
+    echo $lg_customer_id;
     
-  $msg = '{"status" : "Login Successfully",
-          "Customer_id":"'.$lg_customer_id.'"
-          }';
-    echo $msg;
+  // $msg = '{"status" : "Login Successfully",
+  //         "Customer_id":"'.$lg_customer_id.'"
+  //         }';
+  //   echo $msg;
     
 } else {    
     echo "Login Already Exists";
