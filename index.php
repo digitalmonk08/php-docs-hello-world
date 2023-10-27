@@ -46,6 +46,7 @@
     if ($lg_Results == FALSE)
         echo (sqlsrv_errors());
     while ($row = sqlsrv_fetch_array($lg_Results, SQLSRV_FETCH_ASSOC)) {
+    echo ($row['lg_customer_id'] . " " . $row['lg_email'] . PHP_EOL);
     $lg_email_data = $row['lg_email'];
          $lg_customer_id = $row['lg_customer_id'];
         echo "in loop ur id";
