@@ -59,9 +59,10 @@ if ($lg_email_data != $lg_email) {
     $login_Result= sqlsrv_query($conn, $login_insert);
     sqlsrv_free_stmt($login_Result);
 
-    echo "Login Successfully.<br>"; 
-    echo "Customer_Id:\n";
-    echo $lg_customer_id;
+  $msg = '{"status" : "Login Successfully",
+          "Customer_id":"'.$lg_customer_id.'"
+          }';
+    echo $msg;
     
 } else {    
     echo "Login Already Exists";
@@ -89,9 +90,11 @@ if ($sg_email_data != $sg_email) {
 
     $signup_result= sqlsrv_query($conn, $signup_insert);
     sqlsrv_free_stmt($signup_result);
- echo "Signup Successfully.<br>";
-    echo "Customer_Id:\n";
-    echo $sg_customer_id;
+
+      $msg = '{"status" : "Signup Successfully",
+          "Customer_id":"'.$sg_customer_id.'"
+          }';
+    echo $msg;
     
 } else {    
     echo "Signup Already Exists";
