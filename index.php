@@ -31,16 +31,19 @@
     $mytimestamp = $_GET["mytimestamp"];
 
     $lg_email_data = "";
+    $sg_email_data = "";
+    $profile_email_data = "";
 
-    $tsql= "SELECT * FROM login WHERE lg_email='$lg_email'";
-    $getResults= sqlsrv_query($conn, $tsql);
-    if ($getResults == FALSE)
+ if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp)) 
+ {
+    $lg_email_data= "SELECT * FROM login WHERE lg_email='$lg_email'";
+    $lg_Results= sqlsrv_query($conn, $lg_email_data);
+    if ($lg_Results == FALSE)
         echo (sqlsrv_errors());
-    while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
-echo ($row['lg_customer_id'] . " " . $row['lg_email'] . " " . $row['lg_password'] . " " . $row['lg_incoming_msg'] .  PHP_EOL);
+    while ($row = sqlsrv_fetch_array($lg_Results, SQLSRV_FETCH_ASSOC)) {
     $lg_email_data = $row['lg_email'];
     }
-    sqlsrv_free_stmt($getResults);
+    sqlsrv_free_stmt($lg_Results);
 
 if ($lg_email_data != $lg_email) {
     
@@ -51,12 +54,36 @@ if ($lg_email_data != $lg_email) {
     sqlsrv_free_stmt($login_Result);
     echo "Login Successfully";    
 } else {    
-    
-    echo "Email Already Exists";
-
+    echo "Login Email Already Exists";
+    }
 }
 
 
+ if (isset($sg_email, $sg_password, $sg_incoming_msg, $sg_AI_msg, $sg_timestamp)) 
+ {
+    $sg_email_data= "SELECT * FROM signup WHERE sg_email='$sg_email'";
+    $sg_Results= sqlsrv_query($conn, $sg_email_data);
+    if ($sg_Results == FALSE)
+        echo (sqlsrv_errors());
+    while ($row = sqlsrv_fetch_array($sg_Results, SQLSRV_FETCH_ASSOC)) {
+    $sg_email_data = $row['sg_email'];
+    }
+    sqlsrv_free_stmt($sg_Results);
+
+if ($sg_email_data != $sg_email) {
+    
+  $signup_insert = "INSERT INTO signup (sg_email, sg_password, sg_incoming_msg, sg_AI_msg, sg_timestamp)
+   VALUES ('$sg_email', '$sg_password', '$sg_incoming_msg', '$sg_AI_msg', '$sg_timestamp')";
+
+    $signup_result= sqlsrv_query($conn, $signup_insert);
+    sqlsrv_free_stmt($signup_result);
+ echo "Signup Successfully";   
+} else {    
+    echo "Signup Email Already Exists";
+    }
+}
+
+          
 
 // if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp)) 
 // {
