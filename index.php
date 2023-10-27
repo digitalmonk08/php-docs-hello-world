@@ -34,6 +34,10 @@
     $sg_email_data = "";
     $profile_email_data = "";
 
+    $lg_customer_id = "";
+    $sg_customer_id = "";
+    $profile_customer_id = "";
+
 //*********LOGIN API************
  if (isset($lg_email, $lg_password, $lg_incoming_msg, $lg_AI_msg, $lg_timestamp)) 
  {
@@ -53,7 +57,19 @@ if ($lg_email_data != $lg_email) {
 
     $login_Result= sqlsrv_query($conn, $login_insert);
     sqlsrv_free_stmt($login_Result);
-    echo "Login Successfully";    
+
+    $lg_customerID_data = "SELECT * FROM login WHERE lg_email='$lg_email'";
+    $lg_customerIDResults= sqlsrv_query($conn, $lg_customerID_data);
+    if ($lg_customerIDResults == FALSE)
+        echo (sqlsrv_errors());
+    while ($row = sqlsrv_fetch_array($lg_customerIDResults, SQLSRV_FETCH_ASSOC)) {
+    $lg_customer_id = $row['lg_customer_id'];
+    }
+    sqlsrv_free_stmt($lg_Results);
+    echo "Login Successfully"; 
+    echo "Customer_Id\n";
+    echo $lg_customer_id;
+    
 } else {    
     echo "Login Already Exists";
     }
