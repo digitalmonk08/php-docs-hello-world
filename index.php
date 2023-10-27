@@ -68,14 +68,14 @@ if ($lg_email_data != $lg_email) {
     }
     sqlsrv_free_stmt($lg_customer_Results);
     
-  $msg = '{"status" : "Login Successfully",
+  $msg = '{
+          "status" : "Login Successfully",
           "Customer_id":"'.$lg_customer_id.'"
           }';
     echo $msg;
     
 } else {    
-     $msg = '{"status" : "Login Already Exists"
-          }';
+     $msg = '{"status" : "Login Already Exists"}';
     echo $msg;
         }
  }
@@ -110,14 +110,14 @@ if ($sg_email_data != $sg_email) {
     }
     sqlsrv_free_stmt($sg_customer_Results);
     
-      $msg = '{"status" : "Signup Successfully",
-          "Customer_id":"'.$sg_customer_id.'"
+      $msg = '{
+           "status" : "Signup Successfully",
+           "Customer_id":"'.$sg_customer_id.'"
           }';
     echo $msg;
     
 } else {   
-     $msg = '{"status" : "Signup Already Exists"
-          }';
+     $msg = '{"status" : "Signup Already Exists"}';
     echo $msg;
         }
 }
@@ -142,14 +142,12 @@ if ($profile_email_data != $email) {
 
     $history_result= sqlsrv_query($conn, $history_insert);
     sqlsrv_free_stmt($history_result);
-    $msg = '{"status" : "History Inserted"
-          }';
+    $msg = '{"status" : "History Inserted"}';
     
     echo $msg;
     
 } else {    
-     $msg = '{"status" : "History Already Exists"
-          }';
+     $msg = '{"status" : "History Already Exists"}';
     echo $msg;
         }
 }        
