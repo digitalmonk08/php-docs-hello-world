@@ -98,11 +98,19 @@ if ($sg_email_data != $sg_email) {
     $signup_result= sqlsrv_query($conn, $signup_insert);
     sqlsrv_free_stmt($signup_result);
 
-    echo "Signup done";
-    //   $msg = '{"status" : "Signup Successfully",
-    //       "Customer_id":"'.$sg_customer_id.'"
-    //       }';
-    // echo $msg;
+    $sg_customer_data= "SELECT * FROM signup WHERE sg_email='$sg_email'";
+    $sg_customer_Results= sqlsrv_query($conn, $sg_customer_data);
+    if ($sg_customer_Results == FALSE)
+        echo (sqlsrv_errors());
+    while ($row02 = sqlsrv_fetch_array($sg_customer_Results, SQLSRV_FETCH_ASSOC)) {
+         $sg_customer_id = $row02['sg_customer_id']; 
+    }
+    sqlsrv_free_stmt($sg_customer_Results);
+    
+      $msg = '{"status" : "Signup Successfully",
+          "Customer_id":"'.$sg_customer_id.'"
+          }';
+    echo $msg;
     
 } else {    
     echo "Signup Already Exists";
