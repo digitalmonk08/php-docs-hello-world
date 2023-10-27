@@ -11,6 +11,7 @@
     echo ($value);
     echo "changes hoye hun";
     echo "yes mam ho gye";
+   echo "done";
 //     $conn = sqlsrv_connect($serverName, $connectionOptions);
 //     $tsql= "SELECT * FROM kareena";
 //     $getResults= sqlsrv_query($conn, $tsql);
